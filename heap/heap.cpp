@@ -49,19 +49,20 @@ void Heap_max::shift_up(long long int index) {
     shift_up(parent);
 }
 
-void Heap_max::shift_down(long long int index) {
-    if (index * 2 + 1 >= heap.size()) return;
-    long long arr[3] = {index, index * 2 + 1, index * 2 + 2};
-    int n = (index * 2 + 2 < heap.size()) ? 3 : 2;
-    long long max_el = max_in(arr, n);
-    if (index == max_el) return;
-    std::swap(heap[index], heap[max_el]);
-    shift_down(max_el);
+void Heap_max:: shift_down(long long int index) {
+    long long int l = 2 * index + 1;
+    long long int r = 2 * index + 2;
+    long long int largest = index;
+
+    if (l < heap.size() && heap[l] > heap[largest]) {
+        largest = l;
+    }
+    if (r < heap.size() && heap[r] > heap[largest]) {
+        largest = r;
+    }
+    if (largest != index) {
+        std::swap(heap[index], heap[largest]);
+        shift_down(largest);
+    }
 }
 
-long long Heap_max::max_in(long long arr[], int n) {
-    long long int max_ind = arr[0];
-    for (int i = 1; i < n; i++)
-        if (heap[arr[i]] > heap[max_ind]) max_ind = arr[i];
-    return max_ind;
-}
