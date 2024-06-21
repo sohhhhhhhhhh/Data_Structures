@@ -1,5 +1,6 @@
 #pragma once
 #include "heap.h"
+#include <iostream>
 
 void test_duplicate_elements() {
     Heap_max h;
@@ -34,6 +35,14 @@ void test_push_pop_alternating() {
             std::cout << h.del() << " ";
         }
     }
+    int right_el = 49;
+
     std::cout << std::endl;
     h.print_heap();
+    long long res = h.get();
+    if(h.get() == right_el)
+        std::cout << "you got it right" << std::endl;
+    else std::cout << "error: expected " << right_el << " but got " << res << std::endl;
+}
+
 }
