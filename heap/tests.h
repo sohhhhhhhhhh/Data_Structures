@@ -1,4 +1,5 @@
 #pragma once
+#include <random>
 #include "heap.h"
 #include <iostream>
 
@@ -45,4 +46,32 @@ void test_push_pop_alternating() {
     else std::cout << "error: expected " << right_el << " but got " << res << std::endl;
 }
 
+
+void test_large_random_numbers() {
+    int size = 100;
+    std::vector<long long> random_numbers;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<long long> dis(-1000, 1000);
+
+    for (int i = 0; i < size; ++i) {
+        random_numbers.push_back(dis(gen));
+    }
+
+    Heap_max h(random_numbers);
+
+    long long middle_element = random_numbers[size / 2];
+
+    for (int i = 0; i < h.len(); ++i) {
+        if (h.get() % 2 == 0) {
+            h.del();
+        }
+
+    }
+    if (h.get() == middle_element) {
+        std::cout << "Middle element matches heap top: Good" << std::endl;
+    } else {
+        std::cout << "Middle element does not match heap top: Not Good" << std::endl;
+    }
 }

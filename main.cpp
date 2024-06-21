@@ -1,4 +1,4 @@
-#include "tests.h"
+#include "heap/tests.h"
 
 #include <iostream>
 #include <iostream>
@@ -9,7 +9,7 @@
 
 
 int main() {
-    test_remove_from_empty();
+    test_large_random_numbers();
     test_add_one_value_and_print();
     test_duplicate_elements();
     test_descending_order_elements();
