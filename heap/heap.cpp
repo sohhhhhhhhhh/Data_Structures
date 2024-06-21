@@ -35,9 +35,8 @@ long long Heap_max::len() {
 }
 
 void Heap_max::print_heap() {
-    Heap_max h = *this;
-    while (h.len() > 0) {
-        std::cout << h.del() << " ";
+    for (auto& el : heap) {
+        std::cout << el << " ";
     }
     std::cout << std::endl;
 }
